@@ -48,7 +48,27 @@ app.get('/nombre', (requete,reponse) =>{
 })
 
 app.get('/api/leseleves', (requete,reponse) =>{
-    reponse.json(listeEleves)
+    const listepartielle = listeEleves.map(eleve =>{
+        return { nomEleve: eleve.nom, prenomEleve: eleve.prenom}
+    })
+    reponse.json(listepartielle)
 })
+
+app.get('/rechercheEleves/:nomEleve/:prenomEleve', (requete,reponse) =>{
+    const listepartielle = listeEleves.find( eleve => (
+        eleve.nom == requete.params.nomEleve && eleve.prenom == requete.params.prenomEleve
+    ))
+    if(!listepartielle){
+        return reponse.status(404).send('Etudiant non trouvé')
+    }
+    else return reponse.json(listepartielle)
+})
+
+app.get('/chercheParPrenom/:nomEleve', (requete, resultat) => {
+    const listeNomEtudiantTrouve = listeEleves.filter( eleve => eleve.nom.toLowerCase().includes(requete.params.nomEleve))
+    resultat.json(listeNomEtudiantTrouve)
+})
+
+
 
 app.listen(3000)

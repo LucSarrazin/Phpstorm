@@ -4,13 +4,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "demarre": "nodemon routeintro.js"
+    "demarre": "nodemon routeintro.js",
+    "middleware": "nodemon middleware.js",
+    "server": "nodemon server.js",
+    "erreur": "nodemon exempleMiddlewareErreur.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "axios": "^1.7.7",
     "express": "^4.19.2",
     "nodemon": "^3.1.4"
   },
