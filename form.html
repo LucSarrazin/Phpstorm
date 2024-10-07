@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter une note</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Ajouter une note</h1>
+<form id="form-ajouter-note">
+    <label for="eleve">Sélectionner un élève :</label>
+    <select id="eleve" name="eleve">
+    </select>
+    <br>
+    <label for="note">Note :</label>
+    <input type="number" id="note" name="note" required>
+    <br>
+    <label for="coeff">Coefficient :</label>
+    <input type="number" id="coeff" name="coeff" required>
+    <br>
+    <label for="matiere">Matière :</label>
+    <input type="text" id="matiere" name="matiere" required>
+    <br>
+    <label for="appreciation">Appréciation :</label>
+    <textarea id="appreciation" name="appreciation" required></textarea>
+    <br>
+    <button type="submit">Ajouter la note</button>
+</form>
+
+</body>
+</html>

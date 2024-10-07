@@ -8,7 +8,7 @@
     "middleware": "nodemon middleware.js",
     "server": "nodemon server.js",
     "erreur": "nodemon exempleMiddlewareErreur.js",
-    "bdd": "nodemon ORMTest.js",
+    "bdd": "nodemon ORMEleves.js",
     "post": "nodemon ajoute.js"
   },
   "keywords": [],
