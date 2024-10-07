@@ -12,25 +12,32 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 const path = require('path');
+const mysql = require('mysql2');
+
+
+
+const connection = await mysql.createConnection({host:'localhost',user:'root', password:'', database:'nodejs'});
 
 app.post('/testPost', (requete, resultat) => {
     let donneesRecues = requete.body;
     resultat.send('Données recues: ' + JSON.stringify(donneesRecues));
 })
 
-app.get('/login', (requete, resultat) => {
-    resultat.sendFile(path.join(__dirname + '/login.html'));
+app.get('/ajoute', (requete, resultat) => {
+    resultat.sendFile(path.join(__dirname + '/ajoutEleve.html'));
 })
 
-app.post('/login', (req, res) => {
-    const identifiant = req.body.pseudo;
-    const motDePasse = req.body.motDePasse;
-    if (identifiant === 'admin' && motDePasse === 'admin') {
-        res.send('Bonjour mr l\'administrateur');
-    }
-    else {
-        res.send('login invalide');
-    }
-})
+app.post('/ajoute', (req, res) => {
+        const nomEleve = req.body.nomEleve;
+        const prenomEleve = req.body.prenomEleve;
+        if (!nomEleve || !prenomEleve) {
+            res.send('Veuillez remplir tous les champs du formulaire');
+        }
+        else {
+            const query = `INSERT INTO eleves (NOM, PRENOM) VALUES (?, ?)`;
+            connection.query(query, [nomEleve, prenomEleve]);
 
+            res.send('Thanks for your data, now eating cookies');
+        }
+})
 app.listen(3000)
